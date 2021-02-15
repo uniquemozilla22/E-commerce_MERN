@@ -1,13 +1,9 @@
-const mongoose = require('mongoose');
-const data = require('../confidential/data').database
+
+const mongoose = require("mongoose")
+const data = require('../confidential/data.js').database
 
 
-const connection =()=>{ 
-    
-mongoose.connect(data.URI)
-.then(() => console.log("Database Connected"))
-.catch(err => console.log(err))
-
-}
-
-module.exports=connection
+mongoose.connect(data.URI,{useNewUrlParser:true})
+mongoose.connection
+.once('open',()=>console.log('Connection Sucessful to the database'))
+.on('error',(error)=>console.log("Your error:",error))
