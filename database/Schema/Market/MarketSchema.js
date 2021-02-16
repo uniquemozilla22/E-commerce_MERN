@@ -1,44 +1,20 @@
 
-const MarketSchema = (mongoose) =>{
+const Shopfunc = (mongoose) =>{
     
-    let createMarket = new mongoose.Schema({
+    let createShop = new mongoose.Schema({
     name: String,
-    price: Number,
-    quantity: {
-        min: Number,
-        max: Number,
-    },
+    priceRange: Number,
     description:String,
     discount:Number,
-    moreInfo:{
-        color:String,
-        size:String,
-    },
-    review:[{
-        userID:Number,
-        star:Number,
-        description:String,
-        date: Date,
-    }],
-    QueAndAns:[{
-        Que:{
-            userId:Number,
-            questionContent:String,
-            Date: Date
-        },
-        Ans:{
-            userId:Number,
-            AnswerContent:String,
-            Date: Date
-        }
+    products:[{
+        productID:Number
     }]
-
 })
 
-const Market = mongoose.model('Market',createMarket)
+const Shop = mongoose.model('shop',createShop)
 
-return Market
+return Shop
 
 }
 
-module.exports = MarketSchema
+module.exports = Shopfunc
