@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.6.4",
     "mongoose": "^5.11.15",
@@ -12,9 +13,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "server" : "nodemon index.js",
+    "server": "nodemon index.js",
     "client": "npm run start --prefix frontend",
-    "dev":"concurrently \"npm run client\" \"npm run server\" "
+    "dev": "concurrently \"npm run client\" \"npm run server\" "
   },
   "repository": {
     "type": "git",
