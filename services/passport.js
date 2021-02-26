@@ -10,7 +10,7 @@ passport.use(
         {
             clientID:data.ClientID,
             clientSecret:data.ClientSecret,
-            callbackURL:"http://localhost:4000/authenticated/"
+            callbackURL:"http://localhost:4000/login/authenticated"
 
         },
         (
