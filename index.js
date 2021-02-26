@@ -1,9 +1,9 @@
 const express = require("express")
 const app = express();
 const mongoose = require("mongoose")
-const data = require('./confidential/data').database
 const cors = require('cors')
-const ShopModel = require("./database/Schema/Market/ShopModel")
+const ShopModel = require("./database/Schema/Market/ShopModel");
+const passport = require("passport");
 
 
 
@@ -13,7 +13,8 @@ app.use(express.json())
 app.use(cors())
 
 
-
+//creating a authentication Google through passport
+require("./services/passport.js")
 
 //Creating all the required Schema for the application
 require('./database/CreateSchema.js')
@@ -23,16 +24,12 @@ require('./database/CreateSchema.js')
 require('./database/connect_database.js')
 
 //creating Roting mechanism to the 
+require("./Routes/Routes.js")
 
-app.post("/insert/shop",(req,res)=>{
+//authentication Routes
+require("./Routes/AuthRoutes.js")(app,passport)
 
-    const Shop = new ShopModel(req.body.FormsData)
-    console.log(req.body.FormsData)
-    Shop.save()
-        .then(() => console.log('Data inserted'))    
-        .catch(err=>{console.log(err)})
 
-})
 
 //Intiializing a port in the system for the server of backend to run on
 const port = process.env.PORT || 4000
