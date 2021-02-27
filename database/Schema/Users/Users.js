@@ -5,32 +5,32 @@ const UserSchema = (mongoose) =>{
         name:{
         FirstName:{
             content:String,
-            required:Boolean
             },
         MiddleName:{
             content:String,
-            required:Boolean
         },
         LastName:{
             content:String,
-            required:Boolean
             },
+        },
+        google:{
+            googleId: Number,
+            displayName:String
         },
         address:{
             content:String,
-            required:Boolean
         },
         email:{
             content:String,
-            required:Boolean
         },
         UserType:{
             content:String,
-            required:Boolean
+        },
+        UserImageLink:{
+            content:String,
         },
         ShopID:{
             content:Number,
-            required:Boolean
         },       
         
 })

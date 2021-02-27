@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const cors = require('cors')
 const ShopModel = require("./database/Schema/Market/ShopModel");
 const passport = require("passport");
+const CookieSession = require ("cookie-session")
 
 
 
@@ -13,11 +14,19 @@ app.use(express.json())
 app.use(cors())
 
 
-//creating a authentication Google through passport
-require("./services/passport.js")
+//using the cookies to store the user data to keep the user logged in
+app.use(CookieSession({
+    maxAge:2592000000,
+    keys:["9865443"]
+}))
+
 
 //Creating all the required Schema for the application
 require('./database/CreateSchema.js')
+
+
+//creating a authentication Google through passport
+require("./services/passport.js")
 
 
 //Creating a connection between our application and mongoDB
