@@ -12,12 +12,21 @@ module.exports=(app,passport)=>{
         scope:["profile","email"]
     }))
 
-    //using the call back URL to authenticate the user in the system
-    app.get("/login/authenticated",passport.authenticate("google"))
-
     //Displaying the user information in the HTTP URl
     app.get("/login/user",(req , res )=>{
         res.send(req.user)
-        res.end()
     })
+
+    //using the call back URL to authenticate the user in the system
+    app.get("/login/authenticated",passport.authenticate("google"))
+    
+    //logging the user out the application 
+        app.get("/logout",(req,res)=>{
+             req.logout()
+             res.send("<p>The user has sucessfully logged out of the system</p>")
+            res.send(res.user)
+             
+            
+        
+        })  
 }

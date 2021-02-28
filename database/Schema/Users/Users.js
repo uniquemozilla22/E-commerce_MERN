@@ -13,10 +13,7 @@ const UserSchema = (mongoose) =>{
             content:String,
             },
         },
-        google:{
-            googleId: Number,
-            displayName:String
-        },
+        googleID:Number,
         address:{
             content:String,
         },

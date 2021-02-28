@@ -28,16 +28,16 @@ passport.use(
         (
            async (accessToken,  refreshToken , profile , done )=>{
                 
-
-
-            const existingUser = await User.findOne({google:{googleId:profile.id}})
+            //Finding the existence of the user in the database earlier on
+            const existingUser = await User.findOne({googleID:profile.id})
 
             if(existingUser){
+                //if it is a existing user 
                 done(null,existingUser)
             }
             else{
-
-                const application_user = await new User({
+                //if it is a new USer
+                const new_user = await new User({
                     name:{
                         FirstName:{
                             content:profile.name.givenName,
@@ -49,27 +49,26 @@ passport.use(
                             content:profile.name.familyName,
                             },
                         },
-                        google:{
-                            googleId: profile.id,
-                            displayName:profile.displayName
-                        },
+                        googleID: profile.id,
                         address:{
                             content:"",
                         },
                         email:{
-                            content:"undefined",
+                            content:"profile.emails",
                         },
                         UserType:{
-                            content:"Customer",
+                            content:"customer",
                         },
                         UserImageLink:{
-                            content:"undefined"
+                            content:"profile.photos"
                         },
                         ShopID:{
                             content:1,
                         }, 
                 }).save()
-                done(null,application_user)
+                .then(()=>console.log("sucess"))
+                .catch(err=>console.log(err))
+                done(null,new_user)
             }
             }
         )
